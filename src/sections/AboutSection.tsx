@@ -1,6 +1,5 @@
 import { Check } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { aboutPhotoSrc } from '@/config/site'
 import { aboutHighlightKeys, stats } from '@/config/stats'
 import { Container } from '@/ui/Container'
 import { SectionTitle } from '@/ui/SectionTitle'
@@ -16,22 +15,8 @@ export function AboutSection() {
           <SectionTitle id="about-title" title={t('about.title')} subtitle={t('about.subtitle')} />
         </Reveal>
 
-        <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="grid items-start gap-10 lg:grid-cols-[1.2fr_0.8fr]">
           <Reveal>
-            <div className="relative mx-auto w-full max-w-sm lg:sticky lg:top-28">
-              <div className="absolute -inset-3 rounded-[1.75rem] bg-gradient-to-br from-accent-400/25 to-transparent blur-xl" />
-              <img
-                src={aboutPhotoSrc}
-                alt={t('about.photoAlt')}
-                loading="lazy"
-                width={480}
-                height={560}
-                className="relative aspect-[4/5] w-full rounded-3xl border border-border object-cover shadow-lg"
-              />
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.08}>
             <div className="space-y-4 text-base leading-relaxed text-ink-muted sm:text-lg">
               <p>{t('about.intro')}</p>
               <p>{t('about.teaching')}</p>
@@ -51,8 +36,10 @@ export function AboutSection() {
             <p className="mt-6 text-base leading-relaxed text-ink-muted sm:text-lg">
               {t('about.closing')}
             </p>
+          </Reveal>
 
-            <dl className="mt-8 grid grid-cols-2 gap-4 sm:gap-5">
+          <Reveal delay={0.08}>
+            <dl className="grid grid-cols-2 gap-4 sm:gap-5 lg:sticky lg:top-28 lg:grid-cols-1">
               {stats.map((stat) => (
                 <div
                   key={stat.id}

@@ -8,6 +8,3 @@ export const siteConfig: SiteConfig = {
   telegramUsername: 'sergey55578',
   profiProfileUrl: 'https://profi.ru/profile/BukinSS3',
 }
-
-/** Placeholder photo path — replace with your real photo */
-export const aboutPhotoSrc = '/images/mentor-placeholder.svg'
