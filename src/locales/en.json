@@ -1,0 +1,275 @@
+{
+  "meta": {
+    "title": "Sergey Bukin — Frontend Mentor",
+    "description": "Frontend developer and teacher: HTML, CSS, JavaScript, and React from scratch. Practice, support, and interview prep."
+  },
+  "aria": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme",
+    "languageRu": "Russian language",
+    "languageEn": "English language",
+    "closeModal": "Close dialog",
+    "scrollToTop": "Back to top",
+    "externalLink": "Opens in a new tab"
+  },
+  "nav": {
+    "about": "About",
+    "help": "How I help",
+    "process": "Process",
+    "formats": "Formats",
+    "tech": "Tech stack",
+    "testimonials": "Testimonials",
+    "faq": "FAQ",
+    "book": "Book a call"
+  },
+  "hero": {
+    "eyebrow": "Frontend Mentorship",
+    "title": "I teach web development from scratch and help you grow",
+    "description": "Frontend developer and teacher. I explain HTML, CSS, JavaScript, and React in plain language — with a focus on practice, support, and real skills.",
+    "ctaPrimary": "Book a consultation",
+    "ctaSecondary": "Learn more",
+    "visualTitle": "1:1 Frontend mentoring",
+    "visualSubtitle": "HTML · CSS · JS · React",
+    "badges": {
+      "html": "HTML",
+      "css": "CSS",
+      "javascript": "JavaScript",
+      "react": "React",
+      "practice": "Practice",
+      "interviews": "Interviews"
+    }
+  },
+  "about": {
+    "title": "About me",
+    "subtitle": "Frontend developer and teacher with 50+ positive student reviews",
+    "intro": "I help beginners learn web development from scratch and move forward with confidence — explaining complex things in simple words.",
+    "teaching": "I teach HTML, CSS, JavaScript, and React — with a focus on practice and real-world skills.",
+    "highlights": {
+      "h1": "I explain things simply and clearly, even if you’re just starting out.",
+      "h2": "It’s not only theory — we practice skills you’ll actually use.",
+      "h3": "I support you between sessions: ask questions and get help when you need it.",
+      "h4": "I help with web development assignments and projects.",
+      "h5": "I prepare you for interviews — with examples, common questions, and practiced answers.",
+      "h6": "Together, we move faster from beginner to confident developer."
+    },
+    "closing": "If you want to learn in a comfortable, friendly atmosphere — without stress, but with real results — I’d be glad to be your mentor.",
+    "photoAlt": "Mentor photo",
+    "stats": {
+      "experience": "years of experience",
+      "reviews": "positive reviews",
+      "students": "students mentored",
+      "consultations": "consultations"
+    }
+  },
+  "help": {
+    "title": "How I can help",
+    "subtitle": "From HTML, CSS, and JavaScript fundamentals to React, architecture, and career growth",
+    "items": {
+      "fundamentals": {
+        "title": "HTML, CSS & JavaScript",
+        "description": "Frontend foundations: layout, responsive design, modern JS, and solid browser skills."
+      },
+      "reactTs": {
+        "title": "React & TypeScript",
+        "description": "Patterns, typing, hooks, and modern approaches to building UI."
+      },
+      "architecture": {
+        "title": "Frontend architecture",
+        "description": "Project structure, layers, state management, and scalable design."
+      },
+      "codeReview": {
+        "title": "Code Review",
+        "description": "Code walkthroughs focused on readability, maintainability, and quality."
+      },
+      "interviews": {
+        "title": "Interview preparation",
+        "description": "Theory, live coding, behavioral questions, and confident delivery."
+      },
+      "career": {
+        "title": "Career roadmap",
+        "description": "Goals, skill gaps, and a realistic path to the next level."
+      },
+      "portfolio": {
+        "title": "Pet projects & portfolio",
+        "description": "Ideas, architecture, and packaging projects that hiring teams notice."
+      }
+    }
+  },
+  "process": {
+    "title": "How mentorship works",
+    "subtitle": "A clear process from the first call to steady progress",
+    "steps": {
+      "intro": {
+        "title": "Intro & goals",
+        "description": "We discuss your context, expectations, and what you want to achieve."
+      },
+      "assessment": {
+        "title": "Level assessment",
+        "description": "We review your code, experience, and gaps — no theory for theory’s sake."
+      },
+      "plan": {
+        "title": "Personal plan",
+        "description": "We build a roadmap with priorities, timelines, and measurable steps."
+      },
+      "practice": {
+        "title": "Practice & feedback",
+        "description": "Regular sessions, assignments, and progress reviews."
+      }
+    }
+  },
+  "formats": {
+    "title": "Work formats",
+    "subtitle": "Pick the format that matches your goal and pace",
+    "recommended": "Recommended",
+    "cta": "Book now",
+    "plans": {
+      "consultation": {
+        "title": "One-time consultation",
+        "description": "A deep dive into your situation, code, or career question.",
+        "duration": "60–90 minutes",
+        "benefits": {
+          "b1": "Focused problem review",
+          "b2": "Actionable recommendations",
+          "b3": "Clear next steps",
+          "b4": "Chat support"
+        }
+      },
+      "mentorship": {
+        "title": "Ongoing mentorship",
+        "description": "Systematic work on skills, projects, and career growth.",
+        "duration": "from 1 month",
+        "benefits": {
+          "b1": "Weekly calls",
+          "b2": "Code review between sessions",
+          "b3": "Personal roadmap",
+          "b4": "Chat support"
+        }
+      },
+      "interview": {
+        "title": "Interview prep",
+        "description": "An intensive track toward an offer: theory, practice, and mock interviews.",
+        "duration": "2–4 weeks",
+        "benefits": {
+          "b1": "Mock interviews",
+          "b2": "Common problem drills",
+          "b3": "Self-presentation strategy"
+        }
+      }
+    }
+  },
+  "tech": {
+    "title": "Technologies",
+    "subtitle": "From HTML, CSS, and JavaScript to React, TypeScript, and modern tooling"
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "Student stories and the outcomes we reached together",
+    "resultLabel": "Outcome",
+    "items": {
+      "anna": {
+        "name": "Anna K.",
+        "role": "Junior → Middle Frontend",
+        "text": "In two months we closed gaps in TypeScript and architecture. Sessions were concrete and practical — I applied the feedback at work right away.",
+        "result": "Middle Frontend offer in 2.5 months"
+      },
+      "dmitry": {
+        "name": "Dmitry V.",
+        "role": "React developer",
+        "text": "We prepared for interviews with live coding, theory, and weak-spot reviews. I felt much calmer answering and explaining my decisions.",
+        "result": "3 offers after interview rounds"
+      },
+      "maria": {
+        "name": "Maria S.",
+        "role": "Career switcher",
+        "text": "We shaped a strong pet project and a clear learning plan. Instead of random courses — a system and regular feedback.",
+        "result": "First Frontend developer role"
+      }
+    }
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Answers to common questions before we start",
+    "items": {
+      "who": {
+        "question": "Who is mentorship for?",
+        "answer": "Beginners learning HTML, CSS, and JavaScript, Junior and Middle developers, and people switching into Frontend. It’s especially helpful when you need focus, feedback, and a clear growth plan."
+      },
+      "meetings": {
+        "question": "How do sessions work?",
+        "answer": "Online in a flexible format: code review, theory, practice, or mock interviews. After each session we capture agreements and next steps."
+      },
+      "frequency": {
+        "question": "How often will we meet?",
+        "answer": "Usually once a week for ongoing mentorship. Frequency can be adjusted to your schedule and goals."
+      },
+      "interview": {
+        "question": "Can we prepare for interviews?",
+        "answer": "Yes. There’s a dedicated prep format: theory, live coding, behavioral questions, and realistic mock interviews."
+      },
+      "homework": {
+        "question": "Will there be homework?",
+        "answer": "Yes, when it helps progress. Assignments are practical and tied to your goals — no busywork."
+      },
+      "start": {
+        "question": "How do I book the first session?",
+        "answer": "Click “Book a call”, fill in a short form — I’ll get back to you to align on time and format."
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready for the next step in your career?",
+    "description": "Book a consultation — we’ll review your level, goals, and the shortest path to results.",
+    "button": "Get in touch"
+  },
+  "form": {
+    "title": "Book a consultation",
+    "description": "Fill in the form — Telegram will open with a ready message. Press Send, and I’ll receive your request.",
+    "telegramTitle": "Mentorship website request",
+    "fields": {
+      "name": "Name",
+      "namePlaceholder": "How should I address you",
+      "contact": "Email or Telegram",
+      "contactPlaceholder": "name@email.com or @username",
+      "level": "Current level",
+      "levelPlaceholder": "Select a level",
+      "goal": "Goal",
+      "goalPlaceholder": "e.g. interview preparation",
+      "message": "Message",
+      "messagePlaceholder": "Tell me about your challenge and expectations"
+    },
+    "levels": {
+      "junior": "Junior",
+      "middle": "Middle",
+      "senior": "Senior",
+      "switcher": "Switching to Frontend"
+    },
+    "errors": {
+      "nameRequired": "Please enter your name",
+      "nameShort": "Name is too short",
+      "contactRequired": "Please enter email or Telegram",
+      "contactInvalid": "Enter a valid email or Telegram (@username)",
+      "levelRequired": "Please select a level",
+      "goalRequired": "Please describe your goal",
+      "messageRequired": "Please add a short message",
+      "messageShort": "Message is too short"
+    },
+    "submit": "Continue in Telegram",
+    "submitting": "Opening…",
+    "successTitle": "Open Telegram",
+    "successText": "The message is already filled in — press Send in Telegram so I receive your request.",
+    "successClose": "Close"
+  },
+  "footer": {
+    "description": "Frontend mentorship: HTML, CSS, JavaScript, React — with practice and support.",
+    "rights": "All rights reserved.",
+    "navTitle": "Navigation",
+    "socialTitle": "Contacts"
+  },
+  "social": {
+    "telegram": "Telegram",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  }
+}
