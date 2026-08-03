@@ -56,10 +56,9 @@ export interface Technology {
 
 export interface Testimonial {
   id: string
-  nameKey: string
-  roleKey: string
-  textKey: string
-  resultKey: string
+  name: string
+  comment: string
+  rating: number
   avatarInitials: string
 }
 
@@ -75,6 +74,7 @@ export interface SiteConfig {
   email: string
   role: string
   telegramUsername: string
+  profiProfileUrl: string
 }
 
 export type ExperienceLevel = 'junior' | 'middle' | 'senior' | 'switcher'

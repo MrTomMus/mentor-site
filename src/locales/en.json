@@ -165,28 +165,15 @@
   },
   "testimonials": {
     "title": "Testimonials",
-    "subtitle": "Student stories and the outcomes we reached together",
-    "resultLabel": "Outcome",
-    "items": {
-      "anna": {
-        "name": "Anna K.",
-        "role": "Junior → Middle Frontend",
-        "text": "In two months we closed gaps in TypeScript and architecture. Sessions were concrete and practical — I applied the feedback at work right away.",
-        "result": "Middle Frontend offer in 2.5 months"
-      },
-      "dmitry": {
-        "name": "Dmitry V.",
-        "role": "React developer",
-        "text": "We prepared for interviews with live coding, theory, and weak-spot reviews. I felt much calmer answering and explaining my decisions.",
-        "result": "3 offers after interview rounds"
-      },
-      "maria": {
-        "name": "Maria S.",
-        "role": "Career switcher",
-        "text": "We shaped a strong pet project and a clear learning plan. Instead of random courses — a system and regular feedback.",
-        "result": "First Frontend developer role"
-      }
-    }
+    "subtitle": "What students say after our sessions",
+    "prev": "Previous reviews",
+    "next": "Next reviews",
+    "pages": "Review pages",
+    "page": "Page {{page}}",
+    "ratingLabel": "Rating {{rating}} out of 5",
+    "profiText": "More reviews are available on Profi.ru",
+    "profiCta": "Open profile",
+    "profiLogoAlt": "Profi.ru logo"
   },
   "faq": {
     "title": "FAQ",

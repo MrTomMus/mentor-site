@@ -6,6 +6,7 @@ export const siteConfig: SiteConfig = {
   email: 'hello@example.com',
   role: 'Frontend Mentor',
   telegramUsername: 'sergey55578',
+  profiProfileUrl: 'https://profi.ru/profile/BukinSS3',
 }
 
 /** Placeholder photo path — replace with your real photo */
