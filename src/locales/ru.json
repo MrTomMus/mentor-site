@@ -212,34 +212,34 @@
   "form": {
     "title": "Запись на консультацию",
     "description": "Заполните форму — откроется Telegram с готовым сообщением. Нажмите «Отправить», и я получу вашу заявку.",
-    "telegramTitle": "Заявка с сайта менторства",
     "fields": {
       "name": "Имя",
       "namePlaceholder": "Как к вам обращаться",
-      "contact": "Email или Telegram",
-      "contactPlaceholder": "name@email.com или @username",
-      "level": "Текущий уровень",
-      "levelPlaceholder": "Выберите уровень",
-      "goal": "Цель обращения",
-      "goalPlaceholder": "Например: подготовка к собеседованию",
+      "email": "Email",
+      "emailPlaceholder": "name@email.com",
+      "telegram": "Telegram",
+      "telegramPlaceholder": "@username",
+      "contactHint": "Укажите email или Telegram — достаточно одного контакта.",
       "message": "Сообщение",
       "messagePlaceholder": "Расскажите о задаче и ожиданиях"
     },
-    "levels": {
-      "junior": "Junior",
-      "middle": "Middle",
-      "senior": "Senior",
-      "switcher": "Перехожу во Frontend"
+      "consent": {
+      "label": "Я даю согласие на обработку персональных данных на условиях <consent>Согласия на обработку персональных данных</consent>.",
+      "links": "<privacy>Политика конфиденциальности</privacy> · <consent>Согласие на обработку персональных данных</consent>"
     },
     "errors": {
       "nameRequired": "Укажите имя",
       "nameShort": "Имя слишком короткое",
+      "nameLong": "Имя слишком длинное",
       "contactRequired": "Укажите email или Telegram",
-      "contactInvalid": "Введите корректный email или Telegram (@username)",
-      "levelRequired": "Выберите уровень",
-      "goalRequired": "Опишите цель обращения",
+      "emailInvalid": "Введите корректный email",
+      "emailLong": "Email слишком длинный",
+      "telegramInvalid": "Введите корректный Telegram username",
+      "telegramLong": "Telegram username слишком длинный",
       "messageRequired": "Добавьте короткое сообщение",
-      "messageShort": "Сообщение слишком короткое"
+      "messageLong": "Сообщение слишком длинное",
+      "consentRequired": "Нужно дать согласие на обработку персональных данных",
+      "submitFailed": "Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь со мной напрямую:"
     },
     "submit": "Продолжить в Telegram",
     "submitting": "Открытие…",
@@ -251,7 +251,13 @@
     "description": "Менторство по Frontend: HTML, CSS, JavaScript, React — с практикой и поддержкой.",
     "rights": "Все права защищены.",
     "navTitle": "Навигация",
-    "socialTitle": "Контакты"
+    "socialTitle": "Контакты",
+    "privacy": "Политика конфиденциальности",
+    "consent": "Согласие на обработку персональных данных"
+  },
+  "legal": {
+    "backHome": "На главную",
+    "toc": "Содержание"
   },
   "social": {
     "telegram": "Telegram",

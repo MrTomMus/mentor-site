@@ -9,7 +9,7 @@ import { ThemeToggle } from '@/components/ThemeToggle'
 import { MobileMenu } from '@/components/MobileMenu'
 import { Button } from '@/ui/Button'
 import { Container } from '@/ui/Container'
-import { scrollToId } from '@/utils/scroll'
+import { goHome, goToSection } from '@/utils/scroll'
 import { cn } from '@/utils/cn'
 
 interface HeaderProps {
@@ -33,11 +33,11 @@ export function Header({ onBook }: HeaderProps) {
       >
         <Container className="flex h-16 items-center justify-between gap-4">
           <a
-            href="#top"
+            href="/"
             className="font-display text-lg font-bold tracking-tight text-ink transition-colors hover:text-accent-700 dark:hover:text-accent-300"
             onClick={(e) => {
               e.preventDefault()
-              window.scrollTo({ top: 0, behavior: 'smooth' })
+              goHome()
             }}
           >
             {siteConfig.shortName}
@@ -48,11 +48,11 @@ export function Header({ onBook }: HeaderProps) {
             {navigation.map((item) => (
               <a
                 key={item.id}
-                href={item.href}
+                href={`/${item.href}`}
                 className="rounded-lg px-3 py-2 text-sm font-medium text-ink-muted transition-colors hover:text-ink"
                 onClick={(e) => {
                   e.preventDefault()
-                  scrollToId(item.href)
+                  goToSection(item.href)
                 }}
               >
                 {t(item.labelKey)}
