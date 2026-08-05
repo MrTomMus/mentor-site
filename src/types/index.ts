@@ -2,6 +2,8 @@ export type Theme = 'light' | 'dark'
 
 export type LocaleCode = 'ru' | 'en'
 
+export type SupportedLocale = 'ru' | 'en'
+
 export interface NavItem {
   id: string
   href: string
@@ -41,7 +43,6 @@ export interface PricingPlan {
   descriptionKey: string
   benefitKeys: string[]
   durationKey: string
-  /** Replace these placeholders with your real prices */
   price: {
     ru: string
     en: string
@@ -75,16 +76,31 @@ export interface SiteConfig {
   role: string
   telegramUsername: string
   profiProfileUrl: string
+  privacyEmail: string
+  operatorName: string
+  operatorLocation: string
+  siteDomain: string
+  privacyEffectiveDate: string
 }
-
-export type ExperienceLevel = 'junior' | 'middle' | 'senior' | 'switcher'
 
 export interface ContactFormData {
   name: string
-  contact: string
-  level: ExperienceLevel | ''
-  goal: string
+  email: string
+  telegram: string
   message: string
+  privacyConsent: boolean
+  /** Honeypot — must stay empty */
+  website: string
 }
 
-export type ContactFormErrors = Partial<Record<keyof ContactFormData, string>>
+export type ContactFormErrors = Partial<
+  Record<keyof ContactFormData | 'contact' | 'form', string>
+>
+
+export type ConsentRecord = {
+  submittedAt: string
+  consentVersion: string
+  consentTextId: string
+  locale: SupportedLocale
+  sourcePage: string
+}

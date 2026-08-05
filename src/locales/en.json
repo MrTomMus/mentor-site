@@ -212,34 +212,34 @@
   "form": {
     "title": "Book a consultation",
     "description": "Fill in the form — Telegram will open with a ready message. Press Send, and I’ll receive your request.",
-    "telegramTitle": "Mentorship website request",
     "fields": {
       "name": "Name",
       "namePlaceholder": "How should I address you",
-      "contact": "Email or Telegram",
-      "contactPlaceholder": "name@email.com or @username",
-      "level": "Current level",
-      "levelPlaceholder": "Select a level",
-      "goal": "Goal",
-      "goalPlaceholder": "e.g. interview preparation",
+      "email": "Email",
+      "emailPlaceholder": "name@email.com",
+      "telegram": "Telegram",
+      "telegramPlaceholder": "@username",
+      "contactHint": "Provide email or Telegram — one contact is enough.",
       "message": "Message",
       "messagePlaceholder": "Tell me about your challenge and expectations"
     },
-    "levels": {
-      "junior": "Junior",
-      "middle": "Middle",
-      "senior": "Senior",
-      "switcher": "Switching to Frontend"
+      "consent": {
+      "label": "I consent to the processing of personal data on the terms of the <consent>Personal Data Processing Consent</consent>.",
+      "links": "<privacy>Privacy Policy</privacy> · <consent>Personal Data Processing Consent</consent>"
     },
     "errors": {
       "nameRequired": "Please enter your name",
       "nameShort": "Name is too short",
+      "nameLong": "Name is too long",
       "contactRequired": "Please enter email or Telegram",
-      "contactInvalid": "Enter a valid email or Telegram (@username)",
-      "levelRequired": "Please select a level",
-      "goalRequired": "Please describe your goal",
+      "emailInvalid": "Enter a valid email",
+      "emailLong": "Email is too long",
+      "telegramInvalid": "Enter a valid Telegram username",
+      "telegramLong": "Telegram username is too long",
       "messageRequired": "Please add a short message",
-      "messageShort": "Message is too short"
+      "messageLong": "Message is too long",
+      "consentRequired": "Please consent to personal data processing",
+      "submitFailed": "Could not send the request. Please try again or contact me directly:"
     },
     "submit": "Continue in Telegram",
     "submitting": "Opening…",
@@ -251,7 +251,13 @@
     "description": "Frontend mentorship: HTML, CSS, JavaScript, React — with practice and support.",
     "rights": "All rights reserved.",
     "navTitle": "Navigation",
-    "socialTitle": "Contacts"
+    "socialTitle": "Contacts",
+    "privacy": "Privacy Policy",
+    "consent": "Personal Data Processing Consent"
+  },
+  "legal": {
+    "backHome": "Back to home",
+    "toc": "Table of contents"
   },
   "social": {
     "telegram": "Telegram",

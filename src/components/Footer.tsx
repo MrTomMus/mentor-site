@@ -1,10 +1,11 @@
 import { BriefcaseBusiness, Code2, Send } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { siteConfig } from '@/config/site'
 import { navigation } from '@/config/navigation'
 import { socialLinks } from '@/config/social'
 import { Container } from '@/ui/Container'
-import { scrollToId } from '@/utils/scroll'
+import { goToSection } from '@/utils/scroll'
 
 const socialIcons = {
   telegram: Send,
@@ -13,8 +14,11 @@ const socialIcons = {
 } as const
 
 export function Footer() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const year = new Date().getFullYear()
+  const isEn = i18n.language.startsWith('en')
+  const privacyPath = isEn ? '/en/privacy' : '/privacy'
+  const consentPath = isEn ? '/en/personal-data-consent' : '/personal-data-consent'
 
   return (
     <footer className="border-t border-border bg-surface-muted/60 py-12">
@@ -34,11 +38,11 @@ export function Footer() {
               {navigation.map((item) => (
                 <li key={item.id}>
                   <a
-                    href={item.href}
+                    href={`/${item.href}`}
                     className="text-sm text-ink-muted transition-colors hover:text-accent-700 dark:hover:text-accent-300"
                     onClick={(e) => {
                       e.preventDefault()
-                      scrollToId(item.href)
+                      goToSection(item.href)
                     }}
                   >
                     {t(item.labelKey)}
@@ -72,9 +76,29 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-10 border-t border-border pt-6 text-sm text-ink-subtle">
-          © {year} {siteConfig.name}. {t('footer.rights')}
-        </p>
+        <div className="mt-10 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-ink-subtle">
+            © {year} {siteConfig.name}. {t('footer.rights')}
+          </p>
+          <ul className="flex flex-col gap-2 sm:flex-row sm:gap-4">
+            <li>
+              <Link
+                to={privacyPath}
+                className="text-sm text-ink-muted transition-colors hover:text-accent-700 dark:hover:text-accent-300"
+              >
+                {t('footer.privacy')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={consentPath}
+                className="text-sm text-ink-muted transition-colors hover:text-accent-700 dark:hover:text-accent-300"
+              >
+                {t('footer.consent')}
+              </Link>
+            </li>
+          </ul>
+        </div>
       </Container>
     </footer>
   )

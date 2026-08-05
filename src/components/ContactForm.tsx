@@ -1,25 +1,29 @@
 import { useState, type FormEvent } from 'react'
 import { CheckCircle2, Loader2 } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
-import type { ContactFormData, ContactFormErrors, ExperienceLevel } from '@/types'
+import { Trans, useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
+import type { ContactFormData, ContactFormErrors, SupportedLocale } from '@/types'
+import { FIELD_LIMITS } from '@/config/consent'
+import { buildTelegramRequestMessage, openTelegramChat } from '@/utils/telegram'
 import { Button } from '@/ui/Button'
 import { cn } from '@/utils/cn'
-import { buildTelegramMessage, openTelegramChat } from '@/utils/telegram'
 
 const initialData: ContactFormData = {
   name: '',
-  contact: '',
-  level: '',
-  goal: '',
+  email: '',
+  telegram: '',
   message: '',
+  privacyConsent: false,
+  website: '',
 }
 
-const levels: ExperienceLevel[] = ['junior', 'middle', 'senior', 'switcher']
+function isLikelyEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+}
 
-function isValidContact(value: string): boolean {
-  const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  const telegram = /^@?[a-zA-Z0-9_]{4,32}$/
-  return email.test(value) || telegram.test(value)
+function isLikelyTelegram(value: string): boolean {
+  const username = value.trim().replace(/^@/, '')
+  return /^[a-zA-Z0-9_]{4,64}$/.test(username)
 }
 
 interface ContactFormProps {
@@ -28,49 +32,69 @@ interface ContactFormProps {
 }
 
 export function ContactForm({ onSuccessClose, className }: ContactFormProps) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [data, setData] = useState<ContactFormData>(initialData)
   const [errors, setErrors] = useState<ContactFormErrors>({})
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
 
+  const locale: SupportedLocale = i18n.language.startsWith('en') ? 'en' : 'ru'
+  const privacyPath = locale === 'en' ? '/en/privacy' : '/privacy'
+  const consentPath = locale === 'en' ? '/en/personal-data-consent' : '/personal-data-consent'
+
+  const fieldClass =
+    'w-full rounded-xl border border-border bg-surface px-3.5 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-ink-subtle focus:border-accent-500'
+
   const validate = (): ContactFormErrors => {
     const next: ContactFormErrors = {}
+    const name = data.name.trim()
+    const email = data.email.trim()
+    const telegram = data.telegram.trim()
+    const message = data.message.trim()
 
-    if (!data.name.trim()) next.name = t('form.errors.nameRequired')
-    else if (data.name.trim().length < 2) next.name = t('form.errors.nameShort')
+    if (!name) next.name = t('form.errors.nameRequired')
+    else if (name.length < FIELD_LIMITS.name.min) next.name = t('form.errors.nameShort')
+    else if (name.length > FIELD_LIMITS.name.max) next.name = t('form.errors.nameLong')
 
-    if (!data.contact.trim()) next.contact = t('form.errors.contactRequired')
-    else if (!isValidContact(data.contact.trim())) next.contact = t('form.errors.contactInvalid')
+    if (!email && !telegram) {
+      next.contact = t('form.errors.contactRequired')
+    }
 
-    if (!data.level) next.level = t('form.errors.levelRequired')
-    if (!data.goal.trim()) next.goal = t('form.errors.goalRequired')
+    if (email) {
+      if (email.length > FIELD_LIMITS.email.max) next.email = t('form.errors.emailLong')
+      else if (!isLikelyEmail(email)) next.email = t('form.errors.emailInvalid')
+    }
 
-    if (!data.message.trim()) next.message = t('form.errors.messageRequired')
-    else if (data.message.trim().length < 10) next.message = t('form.errors.messageShort')
+    if (telegram) {
+      if (telegram.length > FIELD_LIMITS.telegram.max) next.telegram = t('form.errors.telegramLong')
+      else if (!isLikelyTelegram(telegram)) next.telegram = t('form.errors.telegramInvalid')
+    }
+
+    if (!message) next.message = t('form.errors.messageRequired')
+    else if (message.length > FIELD_LIMITS.message.max) next.message = t('form.errors.messageLong')
+
+    if (!data.privacyConsent) next.privacyConsent = t('form.errors.consentRequired')
 
     return next
   }
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (submitting) return
+
+    // Honeypot: silently ignore bots
+    if (data.website.trim()) {
+      setSuccess(true)
+      setData(initialData)
+      return
+    }
+
     const nextErrors = validate()
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
 
     setSubmitting(true)
-
-    const levelLabel = data.level ? t(`form.levels.${data.level}`) : ''
-    const text = buildTelegramMessage(data, levelLabel, {
-      title: t('form.telegramTitle'),
-      name: t('form.fields.name'),
-      contact: t('form.fields.contact'),
-      level: t('form.fields.level'),
-      goal: t('form.fields.goal'),
-      message: t('form.fields.message'),
-    })
-
-    // Opens Telegram with a prefilled message — the user still presses Send
+    const text = buildTelegramRequestMessage(data, locale)
     openTelegramChat(text)
     setSuccess(true)
     setData(initialData)
@@ -92,11 +116,25 @@ export function ContactForm({ onSuccessClose, className }: ContactFormProps) {
     )
   }
 
-  const fieldClass =
-    'w-full rounded-xl border border-border bg-surface px-3.5 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-ink-subtle focus:border-accent-500'
-
   return (
-    <form className={cn('space-y-4', className)} onSubmit={onSubmit} noValidate>
+    <form
+      className={cn('relative space-y-4', className)}
+      onSubmit={onSubmit}
+      noValidate
+      aria-busy={submitting}
+    >
+      <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="contact-website">Website</label>
+        <input
+          id="contact-website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={data.website}
+          onChange={(e) => setData((prev) => ({ ...prev, website: e.target.value }))}
+        />
+      </div>
+
       <div>
         <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-ink">
           {t('form.fields.name')}
@@ -105,6 +143,7 @@ export function ContactForm({ onSuccessClose, className }: ContactFormProps) {
           id="contact-name"
           name="name"
           autoComplete="name"
+          maxLength={FIELD_LIMITS.name.max}
           value={data.name}
           onChange={(e) => setData((prev) => ({ ...prev, name: e.target.value }))}
           className={cn(fieldClass, errors.name && 'border-red-500')}
@@ -120,76 +159,53 @@ export function ContactForm({ onSuccessClose, className }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="contact-contact" className="mb-1.5 block text-sm font-medium text-ink">
-          {t('form.fields.contact')}
+        <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-ink">
+          {t('form.fields.email')}
         </label>
         <input
-          id="contact-contact"
-          name="contact"
+          id="contact-email"
+          name="email"
+          type="email"
           autoComplete="email"
-          value={data.contact}
-          onChange={(e) => setData((prev) => ({ ...prev, contact: e.target.value }))}
-          className={cn(fieldClass, errors.contact && 'border-red-500')}
-          placeholder={t('form.fields.contactPlaceholder')}
-          aria-invalid={Boolean(errors.contact)}
-          aria-describedby={errors.contact ? 'contact-contact-error' : undefined}
-        />
-        {errors.contact ? (
-          <p id="contact-contact-error" className="mt-1 text-xs text-red-600 dark:text-red-400">
-            {errors.contact}
-          </p>
-        ) : null}
-      </div>
-
-      <div>
-        <label htmlFor="contact-level" className="mb-1.5 block text-sm font-medium text-ink">
-          {t('form.fields.level')}
-        </label>
-        <select
-          id="contact-level"
-          name="level"
-          value={data.level}
-          onChange={(e) =>
-            setData((prev) => ({
-              ...prev,
-              level: e.target.value as ExperienceLevel | '',
-            }))
+          maxLength={FIELD_LIMITS.email.max}
+          value={data.email}
+          onChange={(e) => setData((prev) => ({ ...prev, email: e.target.value }))}
+          className={cn(fieldClass, (errors.email || errors.contact) && 'border-red-500')}
+          placeholder={t('form.fields.emailPlaceholder')}
+          aria-invalid={Boolean(errors.email || errors.contact)}
+          aria-describedby={
+            errors.email || errors.contact ? 'contact-email-error' : 'contact-contact-hint'
           }
-          className={cn(fieldClass, errors.level && 'border-red-500')}
-          aria-invalid={Boolean(errors.level)}
-          aria-describedby={errors.level ? 'contact-level-error' : undefined}
-        >
-          <option value="">{t('form.fields.levelPlaceholder')}</option>
-          {levels.map((level) => (
-            <option key={level} value={level}>
-              {t(`form.levels.${level}`)}
-            </option>
-          ))}
-        </select>
-        {errors.level ? (
-          <p id="contact-level-error" className="mt-1 text-xs text-red-600 dark:text-red-400">
-            {errors.level}
+        />
+        <p id="contact-contact-hint" className="mt-1 text-xs text-ink-subtle">
+          {t('form.fields.contactHint')}
+        </p>
+        {errors.email || errors.contact ? (
+          <p id="contact-email-error" className="mt-1 text-xs text-red-600 dark:text-red-400">
+            {errors.email || errors.contact}
           </p>
         ) : null}
       </div>
 
       <div>
-        <label htmlFor="contact-goal" className="mb-1.5 block text-sm font-medium text-ink">
-          {t('form.fields.goal')}
+        <label htmlFor="contact-telegram" className="mb-1.5 block text-sm font-medium text-ink">
+          {t('form.fields.telegram')}
         </label>
         <input
-          id="contact-goal"
-          name="goal"
-          value={data.goal}
-          onChange={(e) => setData((prev) => ({ ...prev, goal: e.target.value }))}
-          className={cn(fieldClass, errors.goal && 'border-red-500')}
-          placeholder={t('form.fields.goalPlaceholder')}
-          aria-invalid={Boolean(errors.goal)}
-          aria-describedby={errors.goal ? 'contact-goal-error' : undefined}
+          id="contact-telegram"
+          name="telegram"
+          autoComplete="username"
+          maxLength={FIELD_LIMITS.telegram.max}
+          value={data.telegram}
+          onChange={(e) => setData((prev) => ({ ...prev, telegram: e.target.value }))}
+          className={cn(fieldClass, (errors.telegram || errors.contact) && 'border-red-500')}
+          placeholder={t('form.fields.telegramPlaceholder')}
+          aria-invalid={Boolean(errors.telegram)}
+          aria-describedby={errors.telegram ? 'contact-telegram-error' : undefined}
         />
-        {errors.goal ? (
-          <p id="contact-goal-error" className="mt-1 text-xs text-red-600 dark:text-red-400">
-            {errors.goal}
+        {errors.telegram ? (
+          <p id="contact-telegram-error" className="mt-1 text-xs text-red-600 dark:text-red-400">
+            {errors.telegram}
           </p>
         ) : null}
       </div>
@@ -202,6 +218,7 @@ export function ContactForm({ onSuccessClose, className }: ContactFormProps) {
           id="contact-message"
           name="message"
           rows={4}
+          maxLength={FIELD_LIMITS.message.max}
           value={data.message}
           onChange={(e) => setData((prev) => ({ ...prev, message: e.target.value }))}
           className={cn(fieldClass, 'resize-y', errors.message && 'border-red-500')}
@@ -216,7 +233,70 @@ export function ContactForm({ onSuccessClose, className }: ContactFormProps) {
         ) : null}
       </div>
 
-      <Button type="submit" fullWidth disabled={submitting} size="lg">
+      <div className="rounded-2xl border border-border bg-surface-muted/50 p-4">
+        <label htmlFor="contact-consent" className="flex cursor-pointer items-start gap-3">
+          <input
+            id="contact-consent"
+            name="privacyConsent"
+            type="checkbox"
+            checked={data.privacyConsent}
+            onChange={(e) => setData((prev) => ({ ...prev, privacyConsent: e.target.checked }))}
+            className="mt-1 size-4 shrink-0 rounded border-border text-accent-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500"
+            aria-invalid={Boolean(errors.privacyConsent)}
+            aria-describedby={
+              errors.privacyConsent ? 'contact-consent-error contact-consent-links' : 'contact-consent-links'
+            }
+          />
+          <span className="text-sm leading-relaxed text-ink-muted">
+            <Trans
+              i18nKey="form.consent.label"
+              components={{
+                consent: (
+                  <Link
+                    to={consentPath}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-accent-700 underline-offset-2 hover:underline dark:text-accent-300"
+                  />
+                ),
+              }}
+            />
+          </span>
+        </label>
+        <p
+          id="contact-consent-links"
+          className="mt-2 pl-7 text-sm leading-relaxed text-ink-muted"
+        >
+          <Trans
+            i18nKey="form.consent.links"
+            components={{
+              consent: (
+                <Link
+                  to={consentPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-accent-700 underline-offset-2 hover:underline dark:text-accent-300"
+                />
+              ),
+              privacy: (
+                <Link
+                  to={privacyPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-accent-700 underline-offset-2 hover:underline dark:text-accent-300"
+                />
+              ),
+            }}
+          />
+        </p>
+        {errors.privacyConsent ? (
+          <p id="contact-consent-error" className="mt-2 text-xs text-red-600 dark:text-red-400">
+            {errors.privacyConsent}
+          </p>
+        ) : null}
+      </div>
+
+      <Button type="submit" fullWidth disabled={submitting} size="lg" aria-busy={submitting}>
         {submitting ? (
           <>
             <Loader2 className="size-4 animate-spin" aria-hidden />

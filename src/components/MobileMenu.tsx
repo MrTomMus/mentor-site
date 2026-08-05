@@ -5,7 +5,7 @@ import { navigation } from '@/config/navigation'
 import { Button } from '@/ui/Button'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import { scrollToId } from '@/utils/scroll'
+import { goToSection } from '@/utils/scroll'
 import { cn } from '@/utils/cn'
 
 interface MobileMenuProps {
@@ -29,7 +29,7 @@ export function MobileMenu({ open, onClose, onBook }: MobileMenuProps) {
 
   const handleNav = (href: string) => {
     onClose()
-    scrollToId(href)
+    goToSection(href)
   }
 
   return (
@@ -60,7 +60,7 @@ export function MobileMenu({ open, onClose, onBook }: MobileMenuProps) {
               {navigation.map((item) => (
                 <li key={item.id}>
                   <a
-                    href={item.href}
+                    href={`/${item.href}`}
                     className={cn(
                       'block rounded-xl px-3 py-3 text-sm font-medium text-ink-muted transition-colors hover:bg-surface-muted hover:text-ink',
                     )}
