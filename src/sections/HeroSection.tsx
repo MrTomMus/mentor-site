@@ -57,6 +57,15 @@ export function HeroSection({ onBook }: HeroSectionProps) {
               {t('hero.description')}
             </motion.p>
 
+            <motion.p
+              className="mt-3 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg"
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.12 }}
+            >
+              {t('hero.audience')}
+            </motion.p>
+
             <motion.div
               className="mt-8 flex flex-wrap gap-3"
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}

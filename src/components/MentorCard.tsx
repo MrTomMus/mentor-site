@@ -3,6 +3,7 @@ import {
   Braces,
   Code2,
   FolderKanban,
+  GraduationCap,
   Layers,
   Map,
   MessageSquare,
@@ -20,6 +21,7 @@ const iconMap: Record<string, LucideIcon> = {
   'message-square': MessageSquare,
   map: Map,
   'folder-kanban': FolderKanban,
+  'graduation-cap': GraduationCap,
 }
 
 interface MentorCardProps {
