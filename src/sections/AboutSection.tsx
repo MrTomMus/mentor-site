@@ -20,6 +20,7 @@ export function AboutSection() {
             <div className="space-y-4 text-base leading-relaxed text-ink-muted sm:text-lg">
               <p>{t('about.intro')}</p>
               <p>{t('about.teaching')}</p>
+              <p>{t('about.youth')}</p>
             </div>
 
             <ul className="mt-6 space-y-3">

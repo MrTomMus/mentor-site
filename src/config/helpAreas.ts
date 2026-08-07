@@ -43,4 +43,10 @@ export const helpAreas: HelpArea[] = [
     titleKey: 'help.items.portfolio.title',
     descriptionKey: 'help.items.portfolio.description',
   },
+  {
+    id: 'youth',
+    icon: 'graduation-cap',
+    titleKey: 'help.items.youth.title',
+    descriptionKey: 'help.items.youth.description',
+  },
 ]

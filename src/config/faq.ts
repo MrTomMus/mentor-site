@@ -27,6 +27,11 @@ export const faqItems: FaqItem[] = [
     answerKey: 'faq.items.homework.answer',
   },
   {
+    id: 'children',
+    questionKey: 'faq.items.children.question',
+    answerKey: 'faq.items.children.answer',
+  },
+  {
     id: 'start',
     questionKey: 'faq.items.start.question',
     answerKey: 'faq.items.start.answer',

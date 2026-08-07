@@ -28,6 +28,7 @@
     "eyebrow": "Frontend Mentorship",
     "title": "I teach web development from scratch and help you grow",
     "description": "Frontend developer and teacher. I explain HTML, CSS, JavaScript, and React in plain language — with a focus on practice, support, and real skills.",
+    "audience": "I help adults and teenagers learn Frontend — from first steps to confident development.",
     "ctaPrimary": "Book a consultation",
     "ctaSecondary": "Learn more",
     "visualTitle": "1:1 Frontend mentoring",
@@ -46,6 +47,7 @@
     "subtitle": "Frontend developer and teacher with 50+ positive student reviews",
     "intro": "I help beginners learn web development from scratch and move forward with confidence — explaining complex things in simple words.",
     "teaching": "I teach HTML, CSS, JavaScript, and React — with a focus on practice and real-world skills.",
+    "youth": "I also work with children and teenagers who want to start learning programming. I explain material in simple language, keep interest in learning, and help develop logical thinking through practical tasks and building their own projects.",
     "highlights": {
       "h1": "I explain things simply and clearly, even if you’re just starting out.",
       "h2": "It’s not only theory — we practice skills you’ll actually use.",
@@ -93,6 +95,10 @@
       "portfolio": {
         "title": "Pet projects & portfolio",
         "description": "Ideas, architecture, and packaging projects that hiring teams notice."
+      },
+      "youth": {
+        "title": "Teaching children & teenagers",
+        "description": "Individual sessions for school students and teenagers. We learn web development basics at a comfortable pace, build first projects, and learn to understand code — not just copy it."
       }
     }
   },
@@ -124,36 +130,38 @@
     "recommended": "Recommended",
     "cta": "Book now",
     "plans": {
-      "consultation": {
-        "title": "One-time consultation",
-        "description": "A deep dive into your situation, code, or career question.",
+      "single": {
+        "title": "1 session",
+        "description": "For those who want to quickly solve a specific task.",
         "duration": "60–90 minutes",
         "benefits": {
-          "b1": "Focused problem review",
-          "b2": "Actionable recommendations",
-          "b3": "Clear next steps",
-          "b4": "Chat support"
+          "b1": "Review of your situation or project",
+          "b2": "Answers to any questions",
+          "b3": "Practical recommendations",
+          "b4": "Action plan for next steps"
         }
       },
-      "mentorship": {
-        "title": "Ongoing mentorship",
-        "description": "Systematic work on skills, projects, and career growth.",
-        "duration": "from 1 month",
+      "pack4": {
+        "title": "4 sessions",
+        "description": "The best option for steady progress.",
+        "duration": "Save 500 ₽",
         "benefits": {
-          "b1": "Weekly calls",
-          "b2": "Code review between sessions",
-          "b3": "Personal roadmap",
-          "b4": "Chat support"
+          "b1": "Everything included in one session",
+          "b2": "Sequential work toward your goal",
+          "b3": "Homework with review",
+          "b4": "Chat support between sessions"
         }
       },
-      "interview": {
-        "title": "Interview prep",
-        "description": "An intensive track toward an offer: theory, practice, and mock interviews.",
-        "duration": "2–4 weeks",
+      "pack8": {
+        "title": "8 sessions",
+        "description": "For those who want to reach the next level as fast as possible.",
+        "duration": "Save 2 000 ₽",
         "benefits": {
-          "b1": "Mock interviews",
-          "b2": "Common problem drills",
-          "b3": "Self-presentation strategy"
+          "b1": "Everything from the 4-session package",
+          "b2": "Individual development plan",
+          "b3": "Code review and project help",
+          "b4": "Priority chat support",
+          "b5": "Interview prep when needed"
         }
       }
     }
@@ -197,6 +205,10 @@
       "homework": {
         "question": "Will there be homework?",
         "answer": "Yes, when it helps progress. Assignments are practical and tied to your goals — no busywork."
+      },
+      "children": {
+        "question": "Is this suitable for children?",
+        "answer": "Yes. I run individual sessions for school students and teenagers interested in programming. I adapt the program to age and level, explain complex topics in simple language, and help them take their first confident steps in development."
       },
       "start": {
         "question": "How do I book the first session?",
